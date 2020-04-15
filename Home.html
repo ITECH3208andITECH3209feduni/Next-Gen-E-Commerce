@@ -1,0 +1,52 @@
+<?php
+	include 'dbh.php';
+?> 
+
+<html>
+<head><link href="Home.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<title>NextGen</title>
+ 
+<body>
+
+<header>
+<h2>E-commerce Solution</h2>
+</header>
+
+<div class="nav">
+  	<a href="Home.php">Home</a>
+	<div class="search-container">
+    <form action="search.php" method="POST">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit">Go</button>
+    </form>
+  </div>
+
+</div>
+<BR><BR><BR><BR><BR><BR><BR>
+<h2> Softwares to browse</h2>
+<img src="MS.jpg" width="20%">
+
+<div class ="container">
+<?php
+	$sql = "SELECT * FROM article";
+	$result = mysqli_query($con, $sql);
+	$queryResults = mysqli_num_rows($result);
+	if($queryResults>0){
+	while ($row = mysqli_fetch_assoc($result)){
+	echo "<div>
+	<h3> ".$row['a.title']."</h3>
+	<p> ".$row['a.text']."</p>
+	</div>
+
+}
+}
+?>
+
+
+
+
+</body>
+</html>
