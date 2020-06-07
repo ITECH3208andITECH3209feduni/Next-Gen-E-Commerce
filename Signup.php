@@ -1,6 +1,8 @@
 <?php
 
-include 'logdat.php';
+include 'dbh.php';
+session_start();
+
 ?>
 
 <html>
@@ -39,7 +41,7 @@ body {
 }
 
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
   
   width: 60%;
   padding: 12px 20px;
@@ -104,7 +106,15 @@ right:-150;
 <br>
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
-<br>        
+<br>    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reset.php">Forgot your password? Click here to reset.</a>
+<br>
+    <label for="email"><b>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+    <input type="email" placeholder="Enter email address" name="email" required>  
+<br>  
+<input type="checkbox" id="admin">
+    <label for="admin">Check for admin account</label>
+<br>
     <button type="submit">Login</button>
     </div>
    
@@ -112,7 +122,7 @@ right:-150;
 </form>
 <br><br><br><br>
     <div id="sign-up">
-<form action="Sign.php" method="post">
+<form name="form1" action="UserSignup.php" method="post">
 <h2 style="text-align:center">Signup form</h2>
 <div class="imgcontainer1">
     <img src="Home.png" alt="Logo" class="Logo">
@@ -122,15 +132,20 @@ right:-150;
     <input type="text" placeholder="Enter Username" name="_name" required>
 <br>
     <label for="_psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="_psw" required>
-<br>        
-    <button type="submit">Signup</button>
+    <input type="password" placeholder="Enter Password" name="_psw" id="psw"required>
+<br>     
+<label for="email"><b>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+    <input type="email" placeholder="Enter email address" name="_email" required>   
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Admin.php">Click here to create an admin account.</a>
+    <BR>
+    <button type="submit" >User Signup</button>
     </div>
     </div>
   
     </form>
     </div>
     </div>
-    
+  
     </body>
     </html>

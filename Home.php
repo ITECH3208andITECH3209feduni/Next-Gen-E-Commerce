@@ -1,13 +1,19 @@
 <?php
-	include 'dbh.php';
+session_start();
+  include 'Welcome.php';
+if(!empty($_SESSION['login_user'])==null){
+ header("location:Logout.php");
+}
 ?> 
 
 <html>
 <head><link href="Home.css" rel="stylesheet">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300'>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<title>NextGen</title>
+<title>Homepage</title>
+
 <style>
 /* Button used to open the chat form - fixed at the bottom of the page */
 .open-button {
@@ -74,28 +80,31 @@
   background-color: red;
 }
 </style>
+
 <body>
-
-
-
 <header>
-<br>
-<h2>E-commerce Solution</h2>
+
+<h2 style="float:right"> E-commerce Solution </h2>
 </header>
 
 <div class="nav">
-  	<a href="Home.php">Home</a>
-	<div class="search-container">
+    <a href="Home.php">Home</a>
+    <a href="Softwares.php">Softwares</a>
+    <a href="Community.php">Community</a>
+	<div class="search-container" style="float:right">
     <form action="search.php" method="POST">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit">Go</button>
+      <input type="text" placeholder="Search.." name="search" style="font-family:Lato">
+      <button type="submit" style="font-family:Lato">Go</button>
     </form>
   </div>
-
+    <a href="Logout.php" style="float:right">Logout</a>
+    <a href="customerinfo.php" style="float:right">Customer Info</a>
+</ul>
 </div>
-<BR><BR><BR><br><br>
+
+<h4 class="shimmer" style="float:center"><b>Welcome <?php echo  $_SESSION['login_user']?></b></h4>
+<br><br>
 <h2> Softwares to browse</h2>
-<img src="MS.jpg" width="10%">
 
 <div class ="container">
 <?php
@@ -135,12 +144,14 @@ else { echo "0 results";
 
 function myFunction() {
 	var myText = document.getElementById("myText").value;
-	if (myText== 'Hi') {
+  if (myText== 'Hi') 
+  {
 		
 		alert("Hello there. How can I help you?")
 		
    
-	}
+  }
+
 	else {
 		alert("Cant Understand");
 	}
@@ -151,10 +162,6 @@ function openForm() {
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
-
-
 </script>
-
-
 </body>
 </html>

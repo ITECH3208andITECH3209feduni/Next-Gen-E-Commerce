@@ -9,19 +9,25 @@ if (isset($_POST['uname'])){
     $conn = Open_Connection();
     $uname = $_POST['uname'];
     $psw= $_POST['psw'];
-    $email=$_POST['email'];
-    $sql= "SELECT * From login_123 where l_username = '$uname' AND l_password = '$psw' AND email='$email'";
+    $email= $_POST['email'];
+    $sql= "UPDATE login_123 set l_password = '$psw' where l_username = '$uname'";
     
     $result = mysqli_query($conn, $sql);
-    $queryResult= mysqli_num_rows($result);
-    if ($queryResult>0) {
-        while ($row = mysqli_fetch_assoc($result)){
+    
+    if ($result>0) {
+        $subject = "Password reset successful.";
+        $msg="Hi $uname, .\n\nYour new Password=$psw.";
+        $headers="From: E-commerce Solution" . "\r\n" .
+            "CC: $email";
+            
+        mail( $email,$subject,$msg,$headers);
+            
             $_SESSION['login_user']=$uname;
             $_SESSION['login_email']=$email;
             
             
     header("location:Home.php?user=$uname");
-        }
+        
 }    
     else{
         
