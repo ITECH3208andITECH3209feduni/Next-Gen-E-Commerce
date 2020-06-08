@@ -31,7 +31,7 @@ if (isset($_POST['psw'])){
                     $sql3= "UPDATE login_123 set l_password='$psw' where l_username = '$uname'";
                     $result3 = mysqli_query($conn, $sql3);
                     if ($result3>0)
-                     header("location:customerinfo.php");
+                     header("location:Updatedcustomerinfo.php");
                  }
                  else{
                      echo"Failed11";
@@ -44,7 +44,7 @@ if (isset($_POST['psw'])){
 <style>
 .container{
     display:flex;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items:center; 
     
 }
@@ -53,9 +53,7 @@ if (isset($_POST['psw'])){
     width: 400px;
   height: 100px;
   align-items:center; 
-  position:relative;
-  right:-400;
-  bottom:-43;
+ 
 }
 
 img.avatar {
@@ -67,7 +65,7 @@ img.avatar {
   
 #updateDetails input[type=text], input[type=password],input[type=email] {
   
-  width: 75%;
+  width: 55%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -84,6 +82,7 @@ img.avatar {
   border: none;
   cursor: pointer;
   width: 30%;
+  margin-left:120px;
 }
 
 </style>
@@ -92,15 +91,46 @@ img.avatar {
     <div id="userDetails">
         
             <h2> User details</h2>
-                <div id="imgcontainer">
-                    <img src="userdetails.png" alt="Avatar" class="avatar">
-                </div>
+            <i class='fas fa-address-card' style='font-size:96px'></i>
+            <h3 style="text-align:left">
+            <?php
+            $conn = Open_Connection();
+            $Mysql = "SELECT User_Type FROM login_123 where email='$_SESSION[login_email]'";
+            $Myresult = mysqli_query($conn, $Mysql);
+            $row1 = mysqli_fetch_assoc($Myresult);
+                if($row1> 0){
+                    echo "User account type: ";
+                    echo $row1['User_Type'];
+                    $sql="SELECT * From login_123 where User_Type='Admin' AND email='$_SESSION[login_email]'";
+                    $query = mysqli_query($conn,$sql);
+                         if(mysqli_num_rows($query)){
+                             $sql123 = "SELECT COUNT(l_id) as total FROM login_123";
+                             $result123 = mysqli_query($conn, $sql123);
+                             $row = mysqli_fetch_assoc($result123);
+                                 if($row>0){
+                                    echo "<br>";
+                                    echo "<br>";
+                                    echo "Total active users count: ";
+                                    echo $row['total'];
+
+                        
+                 }
+                
+            }
+                 else{
+                     
+                 }
+                
+                }
+            ?> 
+            </h3>
+        
 
             <h3 style="text-align:left">Username: <?php echo  $_SESSION['login_user']?></h3>
             <h3 style="text-align:left">Email: <?php echo  $_SESSION['login_email']?></h3>
             <h3 style="text-align:left">Address: <?php echo  $_SESSION['login_address']?></h3>
             <h3 style="text-align:left">Phone Number: <?php echo  $_SESSION['login_phn']?></h3>
-        
+            
     </div>
  
     <div id="updateDetails">
@@ -115,7 +145,7 @@ img.avatar {
             <h2 style="text-align=center"> Update user details</h2>
             <label for="psw"><b> Password</b></label>
             <input type="password" placeholder="Update your password" name="psw" required>
-            <h7> (If not, re-enter your old password.)</h7>
+            <h7> <br>(If not, re-enter your old password.)</h7>
             <br><br>
             <label for="Phone"><b>Contact_:</b></label>
             <input type="text" placeholder="Update your contact number" name="phn">

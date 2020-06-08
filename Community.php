@@ -2,23 +2,6 @@
 session_start();
 include 'header.php';
 
-if (isset($_POST['discussion'])){
-    $conn = Open_Connection();
-    $discuss=$_POST['discussion'];
-    
-
-    $sql=" INSERT INTO discussion (d_content, d_name) VALUES ('$_POST[discussion]', '$_SESSION[login_user]')";
-    $result = mysqli_query($conn, $sql);
-    
-    if ($result>0) {
-        header("location:Content.php");
-    }
-    else{
-        echo"Failed11";
-    }
-}
-
-
 ?>
 
 <style>
@@ -32,10 +15,10 @@ if (isset($_POST['discussion'])){
   
   border: 1px solid;
   font-size: 17px;
-  
-  width:75%;
-  height:180;
-  float:left;
+  width:55%;
+  height:140;
+ position:absolute;
+ right:300;
 }
 #details{
     float:left;
@@ -49,10 +32,10 @@ if (isset($_POST['discussion'])){
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 20%;
-  position: fixed;
-  right:50;
-  top:420;
+  width: 10%;
+  position:absolute;
+  right:130;
+  top:360;
 }
 </style>
 <h2 style="text-align:center">Community discussion page</h2>
@@ -60,9 +43,9 @@ if (isset($_POST['discussion'])){
 <div class="community-discussion">
     
     <div id="details">
-        <h2 style="text-align:left"> User details</h2>
-        <h3 style="text-align:left">Username: <?php echo  $_SESSION['login_user']?></h3>
-        <h3 style="text-align:left">Email: <?php echo  $_SESSION['login_email']?></h3>
+        <h3 style="text-align:left"> <i class='fas fa-id-card' style='font-size:24px'></i> &nbsp;&nbsp;User details</h3>
+        <h3 style="text-align:left"><i class='fas fa-user' style='font-size:24px'></i>&nbsp;&nbsp;&nbsp;&nbsp;Username: <?php echo  $_SESSION['login_user']?></h3>
+        <h3 style="text-align:left"><i class='fas fa-address-book' style='font-size:24px'></i>&nbsp;&nbsp;&nbsp;&nbsp;Email: <?php echo  $_SESSION['login_email']?></h3>
     </div>
 
     <div id ="box">
@@ -73,3 +56,40 @@ if (isset($_POST['discussion'])){
     </div>
 
 </div>
+<br><br><br><br><br><br><br><br><br><br><br>
+
+<?php
+if (isset($_POST['discussion'])){
+    $conn = Open_Connection();
+    $discuss=$_POST['discussion'];
+    
+
+    $sql=" INSERT INTO discussion (d_content, d_name) VALUES ('$_POST[discussion]', '$_SESSION[login_user]')";
+    $result = mysqli_query($conn, $sql);
+    
+    if ($result>0) {
+        $date_clicked = date('Y-m-d H:i:s');;
+        echo "<h3>Forum last updated on: </h3> $date_clicked";
+        echo "<hr>";
+        $mysql="SELECT * FROM discussion";
+        $myresult = mysqli_query($conn, $mysql);
+       
+        if($myresult->num_rows> 0){
+        while ($row = mysqli_fetch_assoc($myresult)){
+        echo "<div>
+        <h3> ".$row['d_name']." posted to the forum:</h3> <h4>".$row['d_content']."</h4>
+        </div>";
+        
+        
+        echo "<hr>";
+    }
+}
+    else{
+        echo"failed";
+    }
+    }
+    else{
+        echo"Failed11";
+    }
+}
+?>

@@ -16,11 +16,13 @@ header{
 	top:-30;
 	right:0;
 	width:100%;
+	z-index:1;
 }
 
 header h2 {
 
   color: brown;
+  
 }
 
 body{
@@ -36,13 +38,14 @@ body{
 	font-family: "Lato";
 	color: brown;
 	font-weight: 300;
-	font-size: 40px;
+	font-size: 20px;
 	margin: 0 auto;
 	padding: 0 140px 0 0;
 	display: inline;
 	position: fixed;
-	right:400;
-	top:10;
+	right:-130;
+	top:44;
+	z-index:1;
   }
   
 
@@ -56,6 +59,7 @@ body{
 	top:85;
 	left:0;
 	width:100%;
+	z-index:1;
 	
 }
 
@@ -106,10 +110,93 @@ body{
 	background: #2196F3;
   }
   
-.container{
-	width:50%;
+.Home-container{
+	width:100%;
+	background-color: ivory;
+	height:320px;
+	background-repeat: no-repeat;
+	
+	
 }
+.img2 {
+	float: right;
+  }
 
+  .Home-container button{
+	  margin-left: 300px;
+	  width:200px;
+	  background-color: #4CAF50; /* Green */
+	  border: none;
+	  color: white;
+	  padding: 16px 16px;
+	  text-align: center;
+	  text-decoration: none;
+	 
+	  font-size: 14px;
+	  
+	  transition-duration: 0.4s;
+	  cursor: pointer;
+	}
+  
+	.Recent-softwares{
+		width:100%;
+		display:flex;
+    justify-content:space-between;
+	align-items:center;
+		height: 310px;
+		background-color: whitesmoke;
+	
+	}
+
+	#pic{
+		float:center;
+		margin-left: 90px;
+	}
+	#content{
+		float:right;
+		margin-left: -550px;
+		
+	
+	}
+	 #pic, #content{
+		margin-top: -200px;
+	width: 900px;
+	height:5px;
+	  align-items:center; 
+	  
+	 
+	}
+
+	.Recent-softwares1{
+		width:100%;
+		display:flex;
+    justify-content:space-between;
+	align-items:center;
+		height: 310px;
+		background-color: whitesmoke;
+	
+	}
+
+	#pic1{
+		float:center;
+		margin-left: 90px;
+	}
+	#content1{
+		float:right;
+		margin-left: -550px;
+		
+	
+	}
+	 #pic1, #content1{
+		margin-top: -200px;
+	width: 900px;
+	height:5px;
+	  align-items:center; 
+	  
+	 
+	}
+	
+	
 @media screen and (max-width: 600px) {
 	.nav .search-container{
 		float:none;
@@ -128,4 +215,6 @@ body{
   .nav input[type=text] {
     border: 1px solid #ccc;  
   }
+
+  
 }

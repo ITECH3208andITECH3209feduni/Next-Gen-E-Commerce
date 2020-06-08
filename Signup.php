@@ -112,9 +112,6 @@ right:-150;
     <label for="email"><b>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
     <input type="email" placeholder="Enter email address" name="email" required>  
 <br>  
-<input type="checkbox" id="admin">
-    <label for="admin">Check for admin account</label>
-<br>
     <button type="submit">Login</button>
     </div>
    
