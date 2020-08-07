@@ -22,7 +22,7 @@ if(!empty($_SESSION['login_user'])==null){
 </header>
 
 <div class="nav">
-    <a href="Home.php">Home</a>
+    <a href="Home.php">Dashboard</a>
     <a href="Community.php">Community</a>
     <a href="Logout.php" style="float:right">Logout</a>
     <a href="customerinfo.php">User/Admin</a>
